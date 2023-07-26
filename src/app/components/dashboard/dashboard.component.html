@@ -1,0 +1,14 @@
+<div class="widgets">
+    <div *ngFor="let widget of data.widgets" class="box" [class.expand-x]="widget.width == 2" [class.expand-y]="widget.height == 2" draggable="true" (dragstart)="dragStart($event, widget)"  (dragover)="dragOver($event, widget)">
+        <ng-container [ngSwitch]="widget.type">
+            <ng-container *ngSwitchCase="'chart'">
+                <ng-container [ngSwitch]="$any(widget).chartType">
+                    <app-bar-chart class="app-chart" *ngSwitchCase="'bar'"></app-bar-chart>
+                    <app-line-chart class="app-chart" *ngSwitchCase="'line'"></app-line-chart>            
+                    <app-gauge class="app-chart" *ngSwitchCase="'gauge'"></app-gauge>
+                    <app-pie-chart class="app-chart" *ngSwitchCase="'pie'"></app-pie-chart>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.widgets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 400px;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+    margin: 5px;
+}
+
+.box {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 2px;
+    display: flex;
+}
+
+.app-chart {
+    height: 100%;
+    flex: 1;
+}
+
+.expand-x {
+    grid-column-end: span 2;
+}
+
+.expand-y {
+    grid-row-end: span 2;
+}
