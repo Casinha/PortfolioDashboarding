@@ -5,6 +5,19 @@ export type Dashboard = {
 
 export type DashboardWidget = DetailWidget | ChartWidget
 export type ChartWidget = BarChartWidget | PieChartWidget | LineChartWidget | GaugeWidget
+export type DetailWidget = TableWidget
+
+export type WidgetType = WidgetChartType | WidgetDetailType
+
+type WidgetChartType = "chart"
+type WidgetDetailType = "detail"
+
+export type ChartType = ChartBarType | ChartLineType | ChartPieType | ChartGaugeType
+
+type ChartBarType = "bar"
+type ChartLineType = "line"
+type ChartPieType = "pie"
+type ChartGaugeType = "gauge"
 
 type DashboardWidgetBase = {
     id: number
@@ -14,15 +27,15 @@ type DashboardWidgetBase = {
 }
 
 type ChartWidgetBase = {
-    type: "chart"
+    type: WidgetChartType
 } & DashboardWidgetBase
 
-export type DetailWidget = {
-    type: "detail"
+export type DetailWidgetBase = {
+    type: WidgetDetailType
 } & DashboardWidgetBase
 
 export type LineChartWidget = {
-    chartType: "line"
+    chartType: ChartLineType
     xAxisData: any[]
     xAxisName: string
     yAxisName: string
@@ -30,7 +43,7 @@ export type LineChartWidget = {
 } & ChartWidgetBase
 
 export type BarChartWidget = {
-    chartType: "bar"
+    chartType: ChartBarType
     xAxisData: any[]
     xAxisName: string
     yAxisName: string
@@ -38,7 +51,7 @@ export type BarChartWidget = {
 } & ChartWidgetBase
 
 export type GaugeWidget = {
-    chartType: "gauge"
+    chartType: ChartGaugeType
     seriesData: { name: string, data: GaugeData[] }
 } & ChartWidgetBase
 
@@ -49,5 +62,9 @@ type GaugeData = {
 
 export type PieChartWidget = {
     seriesData: { name: string, data: { value: number, name: string }[] }
-    chartType: "pie"
+    chartType: ChartPieType
 } & ChartWidgetBase
+
+export type TableWidget = {
+
+} & DetailWidgetBase

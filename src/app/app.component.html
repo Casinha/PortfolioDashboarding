@@ -1,1 +1,19 @@
-<app-dashboard></app-dashboard>
+<mat-toolbar color="primary">
+    <div>
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div style="text-transform: uppercase;">Portfolio Dashboard</div>
+    <div>
+        <button mat-icon-button>
+            <mat-icon>settings</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
+<mat-drawer-container color="accent">
+    <mat-drawer #drawer mode="over">
+        <p>Auto-resising sidenav</p>
+    </mat-drawer>
+    <app-dashboard></app-dashboard>
+</mat-drawer-container>

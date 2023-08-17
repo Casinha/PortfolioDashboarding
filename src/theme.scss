@@ -1,0 +1,102 @@
+$yellow-palette: (
+  50: #FFFDE7,
+  100: #FFF9C4,
+  200: #FFF59D,
+  300: #FFF176,
+  400: #FFEE58,
+  500: #FFEB3B,
+  600: #FDD835,
+  700: #FBC02D,
+  800: #F9A825,
+  900: #F57F17,
+  A100: #FFFF8D,
+  A200: #FFFF00,
+  A400: #FFEA00,
+  A700: #FFD600,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: rgba(black, 0.87),
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87))
+);
+
+$black-palette: (
+  50: black,
+  100: black,
+  200: black,
+  300: black,
+  400: black,
+  500: black,
+  600: black,
+  700: black,
+  800: black,
+  900: black,
+  A100:black,
+  A200:black,
+  A400:black,
+  A700:black,
+  contrast: (50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 0.87),
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+    A100: rgba(white, 0.87),
+    A200: rgba(white, 0.87),
+    A400: rgba(white, 0.87),
+    A700: rgba(white, 0.87))
+);
+
+$background-colour: black;
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$theme-primary: mat.define-palette($yellow-palette);
+$theme-accent: mat.define-palette($black-palette, A200, A100, A400);
+
+$theme-warn: mat.define-palette(mat.$red-palette);
+
+$yellow-black-theme: mat.define-light-theme((color: (primary: $theme-primary,
+        accent: $theme-accent,
+        warn: $theme-warn ),
+      typography: mat.define-typography-config(),
+      density: 0));
+
+@function modify-background($theme, $background-colour) {
+  //Replace the background in the colour object's background palette
+  $theme-colour: map-get($theme, color);
+  $colour-background-palette: map-get($theme-colour, background);
+  $colour-background-palette: map-merge($colour-background-palette, (background: $background-colour));
+  $colour-background-palette: map-merge($colour-background-palette, (raised-button: $background-colour));
+
+  // Replace the background in the background palette.
+  $background-palette: map-get($theme, background);
+  $background-palette: map-merge($background-palette, (background: $background-colour));
+  $background-palette: map-merge($background-palette, (raised-button: $background-colour));
+
+  // Merge the changes into a new theme.
+  $modified-theme-colour: map-merge($theme-colour, (background: $colour-background-palette));
+  $modified-theme: map-merge($theme, (color: $modified-theme-colour));
+  $modified-theme: map-merge($modified-theme, (background: $background-palette));
+
+  @return $modified-theme;
+}
+
+$yellow-black-theme: modify-background($yellow-black-theme, black);
+
+@include mat.all-component-themes($yellow-black-theme);

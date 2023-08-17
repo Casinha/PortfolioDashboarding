@@ -20,7 +20,7 @@ export class DashboardComponent {
       type: "chart",
       chartType: "bar",
       title: "Bar Chart",
-      height: 2,
+      height: 1,
       width: 1,
       xAxisData: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       xAxisName: "Day",
@@ -41,7 +41,7 @@ export class DashboardComponent {
       chartType: "gauge",
       title: "Gauge",
       height: 1,
-      width: 2,
+      width: 1,
       seriesData: {
         data: [{
           name: "Terrible",

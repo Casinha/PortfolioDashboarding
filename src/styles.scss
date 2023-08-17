@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./theme.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 html {
     height: 100vh;
     width: 100vw;
@@ -19,10 +23,24 @@ app-root {
     height: 100%;
     flex: 1;
     display: flex;
+    flex-direction: column;
 }
 
 app-dashboard {
-    height: 100%;
+    width: 100%;
     flex: 1;
     display: flex;
+}
+
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-drawer-container {
+    flex: 1;
+}
+
+.chart-wrapper {
+    height: 100%;
 }

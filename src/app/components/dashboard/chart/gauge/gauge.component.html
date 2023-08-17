@@ -1,1 +1,4 @@
-<div *ngIf="data" echarts [options]="options" style="height: 100%;" class="cm-gauge-chart"></div>
+<ng-container *ngIf="data">
+    <h2 style="margin: 0; padding: 0;height: 40px; display: flex; align-items: center; justify-content: center;">{{data.title}}</h2>
+    <div echarts [options]="options" class="cm-gauge-chart"></div>
+</ng-container>
